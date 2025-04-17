@@ -42,17 +42,17 @@
 }
 
 @theme {
-  --color-primary-50: oklch(0.98 0.0219 196.8);
-  --color-primary-100: oklch(0.96 0.0516 197.81);
-  --color-primary-200: oklch(0.93 0.088 200.17);
-  --color-primary-300: oklch(0.89 0.1273 202.59);
-  --color-primary-400: oklch(0.83 0.145258 211.6771);
-  --color-primary-500: oklch(0.76 0.1338 214.95);
-  --color-primary-600: oklch(0.64 0.1183 221.13);
-  --color-primary-700: oklch(0.54 0.1012 223.44);
-  --color-primary-800: oklch(0.47 0.084 223.77);
-  --color-primary-900: oklch(0.41 0.0727 227);
-  --color-primary-950: oklch(0.31 0.0598 229.61);
+  --color-primary-50: oklch(0.95 0.0228 252.17);
+  --color-primary-100: oklch(0.91 0.0427 252.65);
+  --color-primary-200: oklch(0.84 0.080364 256.6618);
+  --color-primary-300: oklch(0.73 0.1372 260.04);
+  --color-primary-400: oklch(0.6 0.2159 265.03);
+  --color-primary-500: oklch(0.5 0.2793 265.05);
+  --color-primary-600: oklch(0.47 0.2998 264.21);
+  --color-primary-700: oklch(0.47 0.2992 264.21);
+  --color-primary-800: oklch(0.43 0.273067 264.202);
+  --color-primary-900: oklch(0.36 0.2313 264.21);
+  --color-primary-950: oklch(0.2 0.11 263.66);
 }
 
 :root {
