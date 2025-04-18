@@ -35,7 +35,7 @@ export const items = [
   },
   {
     title: "Óptimo",
-    url: "/optimo",
+    url: "/optimal",
     icon: ClockArrowUp,
   },
   {
@@ -50,12 +50,12 @@ export const items = [
   },
   {
     title: "Reloj",
-    url: "/reloj",
+    url: "/clock",
     icon: Clock,
   },
   {
     title: "Segunda Oportunidad",
-    url: "/segunda-oportunidad",
+    url: "/second-chance",
     icon: Repeat,
   },
 ];
