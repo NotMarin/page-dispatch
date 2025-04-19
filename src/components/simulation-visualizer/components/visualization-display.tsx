@@ -63,7 +63,7 @@ export default function VisualizationDisplay({
             )}
 
             {replacedPage !== null && (
-              <span className="ml-2 text-xs">
+              <span className="ml-2 text-sm">
                 Reemplazo: <span>{replacedPage}</span>
               </span>
             )}
@@ -114,7 +114,7 @@ export default function VisualizationDisplay({
                           <>
                             <div>{page}</div>
                             <div
-                              className={`mt-1 flex justify-center text-xs ${history[index + 1]?.fault ? "text-red-500" : "text-green-500"}`}
+                              className={`flex justify-center text-xs ${history[index + 1]?.fault ? "text-red-500" : "text-green-500"}`}
                             >
                               {history[index + 1]?.fault ? (
                                 <X size={16} />
@@ -153,7 +153,7 @@ export default function VisualizationDisplay({
                           const frameState =
                             history[stepIndex + 1]?.frames[frameIndex];
                           const isNewPage =
-                            stepIndex > 0 &&
+                            stepIndex >= 0 &&
                             history[stepIndex + 1]?.frames[frameIndex] !==
                               history[stepIndex]?.frames[frameIndex] &&
                             history[stepIndex + 1]?.frames[frameIndex] ===

@@ -1,6 +1,6 @@
 import type { FrameHistory, SimulationResult } from "@/types/types";
 
-export function fifoAlgorithm(
+export function lruAlgorithm(
   referenceString: number[],
   frameCount: number
 ): SimulationResult {
@@ -11,10 +11,10 @@ export function fifoAlgorithm(
     { frames: [...simulatedFrames], fault: false, replaced: null },
   ];
 
-  // FIFO queue to track order of page entry
-  const fifoQueue: number[] = [];
+  // LRU usage tracking
+  const lruUsage: { [key: number]: number } = {};
 
-  referenceString.forEach((page) => {
+  referenceString.forEach((page, step) => {
     // Check if page is already in frames (hit)
     const pageIndex = simulatedFrames.indexOf(page);
     let replaced: number | null = null;
@@ -22,6 +22,10 @@ export function fifoAlgorithm(
     if (pageIndex !== -1) {
       // Page hit
       simulatedHits++;
+
+      // Update LRU usage
+      lruUsage[page] = step;
+
       simulationHistory.push({
         frames: [...simulatedFrames],
         fault: false,
@@ -38,10 +42,14 @@ export function fifoAlgorithm(
         // Empty frame available
         replaceIndex = simulatedFrames.indexOf(null);
       } else {
-        // Need to replace a frame - use FIFO
-        const oldestPage = fifoQueue[0];
-        replaceIndex = simulatedFrames.indexOf(oldestPage);
-        fifoQueue.shift();
+        // Need to replace a frame - use LRU
+        let leastRecentlyUsed = Number.POSITIVE_INFINITY;
+        simulatedFrames.forEach((frameValue, index) => {
+          if (frameValue !== null && lruUsage[frameValue] < leastRecentlyUsed) {
+            leastRecentlyUsed = lruUsage[frameValue];
+            replaceIndex = index;
+          }
+        });
       }
 
       // Store the replaced page
@@ -50,8 +58,8 @@ export function fifoAlgorithm(
       // Replace the frame
       simulatedFrames[replaceIndex] = page;
 
-      // Update FIFO queue
-      fifoQueue.push(page);
+      // Update LRU usage
+      lruUsage[page] = step;
 
       simulationHistory.push({
         frames: [...simulatedFrames],

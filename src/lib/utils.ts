@@ -29,11 +29,11 @@ export function getAlgorithmName(algorithm: Algorithm): string {
     case "fifo":
       return "First-In-First-Out (FIFO)";
     case "fifoplus":
-      return "FIFO+ (Second Chance)";
+      return "FIFO+";
     case "lru":
       return "Least Recently Used (LRU)";
     case "optimal":
-      return "Optimal";
+      return "Óptimo";
     default:
       return "Unknown Algorithm";
   }

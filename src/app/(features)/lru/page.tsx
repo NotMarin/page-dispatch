@@ -1,3 +1,5 @@
+import LayoutLru from "./layout";
+
 export default function Lru() {
-  return <div>Lru</div>;
+  return <LayoutLru />;
 }

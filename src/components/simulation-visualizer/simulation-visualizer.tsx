@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import {
   Card,
   CardContent,
@@ -53,47 +53,64 @@ export default function SimulationVisualizer({
     }
   }, [algorithm, parsedReference, frameCount]);
 
+  const currentStepRef = useRef(currentStep);
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
+    currentStepRef.current = currentStep;
+  }, [currentStep]);
 
-    if (isPlaying) {
-      interval = setInterval(() => {
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    const interval = setInterval(
+      () => {
         setCurrentStep((prev) => {
           if (prev + 1 >= parsedReference.length) {
             setIsPlaying(false);
           }
-
           return Math.min(prev + 1, parsedReference.length);
         });
-      }, 1000 / playbackSpeed);
-    }
+      },
+      Math.max(100, 1000 / playbackSpeed)
+    );
 
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [isPlaying, currentStep, parsedReference.length, playbackSpeed]);
+    return () => clearInterval(interval);
+  }, [isPlaying, parsedReference.length, playbackSpeed]);
 
-  const stepForward = () => {
+  const stepForward = useCallback(() => {
     if (currentStep < parsedReference.length) {
       setCurrentStep(currentStep + 1);
     }
-  };
+  }, [currentStep, parsedReference.length]);
 
-  const stepBackward = () => {
+  const stepBackward = useCallback(() => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
     }
-  };
+  }, [currentStep]);
 
-  const togglePlay = () => {
+  const togglePlay = useCallback(() => {
     setIsPlaying(!isPlaying);
-  };
+  }, [isPlaying]);
 
-  const currentFrames =
-    history[currentStep]?.frames || Array(frameCount).fill(null);
-  const isFault = currentStep > 0 ? history[currentStep]?.fault : false;
-  const replacedPage = currentStep > 0 ? history[currentStep]?.replaced : null;
-  const currentPage = currentStep > 0 ? parsedReference[currentStep - 1] : null;
+  const currentFrames = useMemo(
+    () => history[currentStep]?.frames || Array(frameCount).fill(null),
+    [history, currentStep, frameCount]
+  );
+
+  const isFault = useMemo(
+    () => (currentStep > 0 ? history[currentStep]?.fault : false),
+    [history, currentStep]
+  );
+
+  const replacedPage = useMemo(
+    () => (currentStep > 0 ? history[currentStep]?.replaced : null),
+    [history, currentStep]
+  );
+
+  const currentPage = useMemo(
+    () => (currentStep > 0 ? parsedReference[currentStep - 1] : null),
+    [parsedReference, currentStep]
+  );
 
   return (
     <Card className="h-full w-full">
@@ -102,8 +119,8 @@ export default function SimulationVisualizer({
           Visualización del Algoritmo de Reemplazo de Páginas
         </CardTitle>
         <CardDescription>
-          Visualiza cómo funciona {algorithm.toUpperCase()} con una cadena de
-          referencia y un número de marcos dados.
+          Visualiza cómo funciona el algoritmo con una cadena de referencia y un
+          número de marcos dados.
         </CardDescription>
       </CardHeader>
       <CardContent>

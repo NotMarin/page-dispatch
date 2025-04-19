@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import React, { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { Button } from "../ui/button";
 
 interface Slide {
   id: number;
@@ -11,7 +12,7 @@ interface SlidesContainerProps {
   slides: Slide[];
 }
 
-export default function Slidehow({ slides }: SlidesContainerProps) {
+export default function SlideShow({ slides }: SlidesContainerProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const changeSlide = useCallback(
@@ -45,13 +46,15 @@ export default function Slidehow({ slides }: SlidesContainerProps) {
   return (
     <div className="relative flex h-full w-full flex-col items-center overflow-hidden p-10">
       {currentIndex !== 0 && (
-        <button
+        <Button
+          variant="ghost"
           onClick={() => changeSlide("up")}
-          className="absolute top-0 cursor-pointer"
+          size="icon"
+          className="absolute top-0 cursor-pointer rounded-full"
           disabled={currentIndex === 0}
         >
-          <ChevronUp size={40} />
-        </button>
+          <ChevronUp className="size-10" />
+        </Button>
       )}
 
       <div className="relative h-full w-full">
@@ -83,13 +86,15 @@ export default function Slidehow({ slides }: SlidesContainerProps) {
       </div>
 
       {currentIndex !== slides.length - 1 && (
-        <button
+        <Button
           onClick={() => changeSlide("down")}
-          className="absolute bottom-0 cursor-pointer"
+          variant="ghost"
+          size="icon"
+          className="absolute bottom-0 cursor-pointer rounded-full"
           disabled={currentIndex === slides.length - 1}
         >
-          <ChevronDown size={40} />
-        </button>
+          <ChevronDown className="size-10" />
+        </Button>
       )}
     </div>
   );

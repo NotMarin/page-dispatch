@@ -3,8 +3,8 @@
 import { usePathname } from "next/navigation";
 import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
-import { items } from "../app-sidebar";
 import { useMemo } from "react";
+import { sidebarSections } from "../app-sidebar";
 
 interface AlgorithmLayoutProps {
   children: React.ReactNode;
@@ -13,9 +13,17 @@ interface AlgorithmLayoutProps {
 export function AppSidebarInset({ children }: AlgorithmLayoutProps) {
   const pathname = usePathname();
 
+  const allItems = useMemo(() => {
+    return [
+      sidebarSections.inicio,
+      ...sidebarSections.sinSegundaOportunidad,
+      ...sidebarSections.conSegundaOportunidad,
+    ];
+  }, []);
+
   const current = useMemo(
-    () => items.find((item) => item.url === pathname),
-    [pathname]
+    () => allItems.find((item) => item.url === pathname),
+    [pathname, allItems]
   );
   const title = useMemo(() => {
     if (current?.title === "Inicio") return "Inicio";

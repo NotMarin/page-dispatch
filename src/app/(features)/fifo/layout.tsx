@@ -1,8 +1,8 @@
 "use client";
 
-import Slideshow from "@/components/slide-show/slide-show";
+import SlideShow from "@/components/slide-show/slide-show";
 import React, { useMemo } from "react";
-import IntroFifo from "./components/intro/intro-fifo";
+import IntroFifo from "./components/intro-fifo/intro-fifo";
 import SimulationFifo from "./components/simulation-fifo/simulation-fifo";
 
 export default function FifoLayout() {
@@ -20,5 +20,5 @@ export default function FifoLayout() {
     []
   );
 
-  return <Slideshow slides={slides} />;
+  return <SlideShow slides={slides} />;
 }

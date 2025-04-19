@@ -1,5 +1,7 @@
 import type { Algorithm, SimulationResult } from "@/types/types";
 import { fifoAlgorithm } from "./algorithms/fifo";
+import { lruAlgorithm } from "./algorithms/lru";
+import { optimalAlgorithm } from "./algorithms/optimal";
 
 export function runSimulation(
   algorithm: Algorithm,
@@ -9,7 +11,10 @@ export function runSimulation(
   switch (algorithm) {
     case "fifo":
       return fifoAlgorithm(referenceString, frameCount);
-
+    case "lru":
+      return lruAlgorithm(referenceString, frameCount);
+    case "optimal":
+      return optimalAlgorithm(referenceString, frameCount);
     default:
       return {
         history: [

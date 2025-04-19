@@ -1,6 +1,6 @@
 import type { FrameHistory, SimulationResult } from "@/types/types";
 
-export function fifoAlgorithm(
+export function optimalAlgorithm(
   referenceString: number[],
   frameCount: number
 ): SimulationResult {
@@ -11,10 +11,16 @@ export function fifoAlgorithm(
     { frames: [...simulatedFrames], fault: false, replaced: null },
   ];
 
-  // FIFO queue to track order of page entry
-  const fifoQueue: number[] = [];
+  // For Optimal algorithm - track future usage of each page
+  const futureUsage: { [key: number]: number[] } = {};
+  referenceString.forEach((page, index) => {
+    if (!futureUsage[page]) {
+      futureUsage[page] = [];
+    }
+    futureUsage[page].push(index);
+  });
 
-  referenceString.forEach((page) => {
+  referenceString.forEach((page, step) => {
     // Check if page is already in frames (hit)
     const pageIndex = simulatedFrames.indexOf(page);
     let replaced: number | null = null;
@@ -38,10 +44,30 @@ export function fifoAlgorithm(
         // Empty frame available
         replaceIndex = simulatedFrames.indexOf(null);
       } else {
-        // Need to replace a frame - use FIFO
-        const oldestPage = fifoQueue[0];
-        replaceIndex = simulatedFrames.indexOf(oldestPage);
-        fifoQueue.shift();
+        // Need to replace a frame - use Optimal
+        let furthestUse = -1;
+        simulatedFrames.forEach((frameValue, index) => {
+          if (frameValue === null) return;
+
+          // Find next use of this page
+          const futureUses = futureUsage[frameValue];
+          const nextUseIndex = futureUses.findIndex(
+            (useStep) => useStep > step
+          );
+
+          // If page won't be used again, replace it
+          if (nextUseIndex === -1) {
+            replaceIndex = index;
+            furthestUse = Number.POSITIVE_INFINITY;
+            return;
+          }
+
+          const nextUse = futureUses[nextUseIndex];
+          if (nextUse > furthestUse) {
+            furthestUse = nextUse;
+            replaceIndex = index;
+          }
+        });
       }
 
       // Store the replaced page
@@ -49,9 +75,6 @@ export function fifoAlgorithm(
 
       // Replace the frame
       simulatedFrames[replaceIndex] = page;
-
-      // Update FIFO queue
-      fifoQueue.push(page);
 
       simulationHistory.push({
         frames: [...simulatedFrames],
