@@ -8,7 +8,7 @@ export function fifoPlusAlgorithm(
   const fifoQueue: number[] = [];
   const refBits: Record<number, boolean> = {};
   const history: FrameHistory[] = [
-    { frames: [...frames], fault: false, replaced: null },
+    { frames: [...frames], fault: false, replaced: null, refBits: {} },
   ];
 
   let pageFaults = 0;
@@ -21,7 +21,13 @@ export function fifoPlusAlgorithm(
       // Page hit
       pageHits++;
       updateRefBits(refBits, page);
-      history.push({ frames: [...frames], fault: false, replaced: null });
+      refBits[page] = true;
+      history.push({
+        frames: [...frames],
+        fault: false,
+        replaced: null,
+        refBits: { ...refBits },
+      });
       continue;
     }
 
@@ -41,9 +47,14 @@ export function fifoPlusAlgorithm(
 
     frames[replaceIndex] = page;
     fifoQueue.push(page);
-    refBits[page] = true;
+    refBits[page] = false;
 
-    history.push({ frames: [...frames], fault: true, replaced });
+    history.push({
+      frames: [...frames],
+      fault: true,
+      replaced,
+      refBits: { ...refBits },
+    });
   }
 
   return { history, pageFaults, pageHits };

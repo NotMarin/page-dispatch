@@ -9,8 +9,8 @@ import { useCallback } from "react";
 export default function Home() {
   const router = useRouter();
 
-  const handleToFifo = useCallback(() => {
-    router.push("/fifo");
+  const handleToInfo = useCallback(() => {
+    router.push("/replacements-algorithms");
   }, [router]);
 
   return (
@@ -25,10 +25,10 @@ export default function Home() {
           paso a paso.
         </p>
         <Button
-          onClick={handleToFifo}
+          onClick={handleToInfo}
           className="mt-6 h-12 w-full cursor-pointer justify-between text-lg"
         >
-          <span className="w-full">Empezar simulación</span>
+          <span className="w-full">Conoce más</span>
           <ArrowRight className="ml-auto size-5" />
         </Button>
       </div>

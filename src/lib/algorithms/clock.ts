@@ -7,7 +7,12 @@ export function clockAlgorithm(
   const frames = Array(frameCount).fill(null);
   const refBits: boolean[] = Array(frameCount).fill(false);
   const history: FrameHistory[] = [
-    { frames: [...frames], fault: false, replaced: null },
+    {
+      frames: [...frames],
+      fault: false,
+      replaced: null,
+      refBits: [...refBits],
+    },
   ];
 
   let pageFaults = 0;
@@ -21,7 +26,12 @@ export function clockAlgorithm(
       // Page hit
       pageHits++;
       refBits[hitIndex] = true;
-      history.push({ frames: [...frames], fault: false, replaced: null });
+      history.push({
+        frames: [...frames],
+        fault: false,
+        replaced: null,
+        refBits: [...refBits],
+      });
       continue;
     }
 
@@ -50,7 +60,12 @@ export function clockAlgorithm(
       clockPointer = (clockPointer + 1) % frameCount;
     }
 
-    history.push({ frames: [...frames], fault: true, replaced });
+    history.push({
+      frames: [...frames],
+      fault: true,
+      replaced,
+      refBits: [...refBits],
+    });
 
     // Move clock pointer to next position
     clockPointer = (clockPointer + 1) % frameCount;

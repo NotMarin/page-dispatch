@@ -15,7 +15,7 @@ export function AppSidebarInset({ children }: AlgorithmLayoutProps) {
 
   const allItems = useMemo(() => {
     return [
-      sidebarSections.inicio,
+      ...sidebarSections.inicio,
       ...sidebarSections.sinSegundaOportunidad,
       ...sidebarSections.conSegundaOportunidad,
     ];
@@ -27,6 +27,8 @@ export function AppSidebarInset({ children }: AlgorithmLayoutProps) {
   );
   const title = useMemo(() => {
     if (current?.title === "Inicio") return "Inicio";
+    if (current?.title === "Hablemos de ellos") return "Hablemos de ellos";
+    if (current?.title === "Anomalía de Belady") return "Anomalía de Belady";
     return `Algoritmo ${current?.title}`;
   }, [current]);
 

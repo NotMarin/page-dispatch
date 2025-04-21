@@ -26,6 +26,25 @@ export default function AlgorithmControls({
   return (
     <div className="space-y-4">
       <div>
+        <Label htmlFor="reference">Cadena de Referencia</Label>
+        <Input
+          id="reference"
+          value={referenceString}
+          onChange={(e) => {
+            const value = e.target.value;
+            if (/^(\d+,)*\d*$/.test(value)) {
+              setReferenceString(value);
+            }
+          }}
+          placeholder="Números de página"
+          className="mt-2"
+        />
+        <p className="text-muted-foreground mt-1 text-xs">
+          Ingresa números de página separados por comas
+        </p>
+      </div>
+
+      <div>
         <Label htmlFor="frames">Número de marcos</Label>
         <div className="flex items-center gap-2">
           <Slider
@@ -39,20 +58,6 @@ export default function AlgorithmControls({
           />
           <span className="w-8 text-center">{frameCount}</span>
         </div>
-      </div>
-
-      <div>
-        <Label htmlFor="reference">Cadena de Referencia</Label>
-        <Input
-          id="reference"
-          value={referenceString}
-          onChange={(e) => setReferenceString(e.target.value)}
-          placeholder="Números de página"
-          className="mt-2"
-        />
-        <p className="text-muted-foreground mt-1 text-xs">
-          Ingresa números de página separados por comas
-        </p>
       </div>
 
       <div>

@@ -17,18 +17,32 @@ import {
   Clock,
   ClockArrowUp,
   Home,
+  MessageCircleQuestion,
   Repeat,
+  Shapes,
 } from "lucide-react";
 import { AppSidebarHeader } from "./components/app-sidebar-header";
 import AppSidebarFooter from "./components/app-sidebar-footer";
 import Link from "next/link";
 
 export const sidebarSections = {
-  inicio: {
-    title: "Inicio",
-    url: "/",
-    icon: Home,
-  },
+  inicio: [
+    {
+      title: "Inicio",
+      url: "/",
+      icon: Home,
+    },
+    {
+      title: "Hablemos de ellos",
+      url: "/replacements-algorithms",
+      icon: MessageCircleQuestion,
+    },
+    {
+      title: "Anomalía de Belady",
+      url: "/belady-anomaly",
+      icon: Shapes,
+    },
+  ],
   sinSegundaOportunidad: [
     {
       title: "FiFo",
@@ -97,18 +111,8 @@ export function AppSidebar() {
           <SidebarGroupLabel className="truncate">
             Algoritmos de reemplazo de página
           </SidebarGroupLabel>
-
           <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link href={sidebarSections.inicio.url}>
-                    <sidebarSections.inicio.icon />
-                    <span>{sidebarSections.inicio.title}</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
+            <SidebarMenuList items={sidebarSections.inicio} />
           </SidebarGroupContent>
 
           <SidebarGroupLabel className="truncate">

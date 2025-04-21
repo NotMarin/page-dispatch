@@ -8,7 +8,7 @@ export function secondChanceAlgorithm(
   const queue: number[] = [];
   const refBits: Record<number, boolean> = {};
   const history: FrameHistory[] = [
-    { frames: [...frames], fault: false, replaced: null },
+    { frames: [...frames], fault: false, replaced: null, refBits: {} },
   ];
 
   let pageFaults = 0;
@@ -20,7 +20,12 @@ export function secondChanceAlgorithm(
     if (hitIndex !== -1) {
       pageHits++;
       refBits[page] = true;
-      history.push({ frames: [...frames], fault: false, replaced: null });
+      history.push({
+        frames: [...frames],
+        fault: false,
+        replaced: null,
+        refBits: { ...refBits },
+      });
       continue;
     }
 
@@ -41,7 +46,12 @@ export function secondChanceAlgorithm(
     queue.push(page);
     refBits[page] = true;
 
-    history.push({ frames: [...frames], fault: true, replaced });
+    history.push({
+      frames: [...frames],
+      fault: true,
+      replaced,
+      refBits: { ...refBits },
+    });
   }
 
   return { history, pageFaults, pageHits };
@@ -55,9 +65,10 @@ function findVictimPage(
     const candidate = queue.shift()!;
     if (refBits[candidate]) {
       refBits[candidate] = false;
+      queue.shift();
       queue.push(candidate);
     } else {
-      return candidate;
+      return queue.shift()!;
     }
   }
 }

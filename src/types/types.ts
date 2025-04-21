@@ -10,6 +10,7 @@ export interface FrameHistory {
   frames: (number | null)[];
   fault: boolean;
   replaced: number | null;
+  refBits?: Record<number, boolean>;
 }
 
 export interface SimulationResult {

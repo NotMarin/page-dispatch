@@ -4,7 +4,7 @@ export default function IntroClock() {
   return (
     <div className="flex h-full w-full items-center justify-center text-center">
       <div className="flex max-w-4xl flex-col gap-4">
-        <h1 className="text-5xl font-bold">Clock</h1>
+        <h1 className="text-5xl font-bold">Reloj</h1>
 
         <p className="2xl:text-lg">
           El algoritmo Clock es una versión optimizada del algoritmo Second

@@ -2,7 +2,7 @@
 
 import type { Algorithm, FrameHistory } from "@/types/types";
 import { getAlgorithmName } from "@/lib/utils";
-import { Check, X } from "lucide-react";
+import { Check, Shield, X } from "lucide-react";
 
 interface VisualizationDisplayProps {
   algorithm: Algorithm;
@@ -137,6 +137,7 @@ export default function VisualizationDisplay({
 
                           const frameState =
                             history[stepIndex + 1]?.frames[frameIndex];
+
                           const isNewPage =
                             stepIndex >= 0 &&
                             history[stepIndex + 1]?.frames[frameIndex] !==
@@ -144,12 +145,42 @@ export default function VisualizationDisplay({
                             history[stepIndex + 1]?.frames[frameIndex] ===
                               parsedReference[stepIndex];
 
+                          const hasSecondChance =
+                            frameState !== null &&
+                            history[stepIndex + 1]?.refBits?.[frameState];
+
+                          const clockSecondChance =
+                            history[stepIndex + 1]?.refBits?.[frameIndex];
+
                           return (
                             <td
                               key={stepIndex}
-                              className={`border p-2 text-center ${isNewPage ? "bg-primary/10" : ""} `}
+                              className={`relative border p-2 text-center ${isNewPage ? "bg-primary/10" : ""} `}
                             >
-                              {frameState !== null ? frameState : "-"}
+                              {frameState !== null ? (
+                                <span>
+                                  {frameState}
+                                  {algorithm === "clock" ? (
+                                    <>
+                                      {clockSecondChance && (
+                                        <span className="absolute top-1 right-1">
+                                          <Shield size={14} />
+                                        </span>
+                                      )}
+                                    </>
+                                  ) : (
+                                    <>
+                                      {hasSecondChance && (
+                                        <span className="absolute top-1 right-1">
+                                          <Shield size={14} />
+                                        </span>
+                                      )}
+                                    </>
+                                  )}
+                                </span>
+                              ) : (
+                                "-"
+                              )}
                             </td>
                           );
                         })}
