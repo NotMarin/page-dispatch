@@ -60,6 +60,6 @@ El servidor se iniciará en http://localhost:3000/ por defecto
 
 ## 📷 Capturas de Pantalla
 
-![Página Inicial](public/images/assets/dashboard.png)
-![Intro de Algoritmo](public/images/assets/intro.png)
-![Simulaión de Algoritmo](public/images/assets/simulation.png)
+![Página Inicial](public/assets/dashboard.png)
+![Intro de Algoritmo](public/assets/intro.png)
+![Simulaión de Algoritmo](public/assets/simulation.png)
