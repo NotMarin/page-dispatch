@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 Simulador de Algoritmos de Reemplazo de Página
 
-## Getting Started
+Este es un proyecto desarrollado con **Next.js 15.3.0**, **TypeScript** y **Tailwind CSS 4**, que permite la simulación visual e interactiva de varios algoritmos de **despacho de páginas** en sistemas operativos.
 
-First, run the development server:
+Cada algoritmo incluye una breve **introducción teórica** y una **simulación animada paso a paso**, pensada para apoyar tanto el aprendizaje como la enseñanza.
+
+---
+
+## 📌 Características
+
+- Simulación visual de los principales algoritmos de reemplazo de página:
+  - **FIFO (First In, First Out)**
+  - **Segunda Oportunidad**
+  - **Reloj**
+  - **LRU (Least Recently Used)**
+  - **Óptimo**
+  - **FIFO+** (versión experimental)
+- Navegación tipo **slide vertical** entre algoritmos.
+- Modos **claro y oscuro** para una mejor experiencia de usuario.
+- Interfaz minimalista, responsiva y fácil de usar.
+
+---
+
+## 🚀 Instalación y Ejecución
+
+Sigue estos pasos para correr el proyecto localmente:
+
+### 1️⃣ Clonar el repositorio
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/NotMarin/page-dispatch
+cd page-dispatch
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2️⃣ Instalar dependencias
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+bash
+ npm install
+ # o si usas bun:
+ bun install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3️⃣ Ejecutar el servidor de desarrollo
 
-## Learn More
+```
+bash
+ npm run dev
+ # o con bun:
+ bun run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+El servidor se iniciará en http://localhost:3000/ por defecto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Tecnologías Usadas
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Next.js 15.3.0** - Framework para React con SSR y optimización automática.
+- **TypeScript** - Tipado estático para mayor seguridad en el código.
+- **Tailwind CSS 4** - Framework de estilos para un diseño rápido y eficiente.
 
-## Deploy on Vercel
+## 📷 Capturas de Pantalla
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![Página Inicial](public/images/assets/dashboard.png)
+![Intro de Algoritmo](public/images/assets/intro.png)
+![Simulaión de Algoritmo](public/images/assets/simulation.png)
