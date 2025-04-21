@@ -34,6 +34,8 @@ export function getAlgorithmName(algorithm: Algorithm): string {
       return "Least Recently Used (LRU)";
     case "optimal":
       return "Óptimo";
+    case "fifo+":
+      return "FIFO+";
     default:
       return "Unknown Algorithm";
   }
