@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo } from "react";
-import IntroFifoPlus from "./intro-fifo+/intro-fifo+";
-import SimulationFifoPlus from "./simulation-fifo+/simulation-fifo+";
+import IntroFifoPlus from "./components/intro-fifo+/intro-fifo+";
+import SimulationFifoPlus from "./components/simulation-fifo+/simulation-fifo+";
 import SlideShow from "@/components/slide-show/slide-show";
 
 export default function LayoutFifoPlus() {

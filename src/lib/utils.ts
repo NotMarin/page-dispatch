@@ -28,14 +28,16 @@ export function getAlgorithmName(algorithm: Algorithm): string {
   switch (algorithm) {
     case "fifo":
       return "First-In-First-Out (FIFO)";
-    case "fifoplus":
-      return "FIFO+";
     case "lru":
       return "Least Recently Used (LRU)";
     case "optimal":
       return "Óptimo";
     case "fifo+":
       return "FIFO+";
+    case "clock":
+      return "Reloj";
+    case "second-chance":
+      return "Segunda Oportunidad";
     default:
       return "Unknown Algorithm";
   }

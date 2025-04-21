@@ -4,14 +4,14 @@ export default function IntroFifo() {
       <div className="flex max-w-4xl flex-col gap-4">
         <h1 className="text-5xl font-bold">First-In, First-Out</h1>
 
-        <p className="text-lg">
+        <p className="2xl:text-lg">
           FIFO es un algoritmo de reemplazo de páginas que sigue una lógica
           sencilla: la primera página que entra en la memoria es la primera en
           salir cuando es necesario liberar espacio.
         </p>
 
         <h2 className="text-center text-2xl font-semibold">Conceptos clave</h2>
-        <ul className="list-inside list-disc text-lg">
+        <ul className="list-inside list-disc 2xl:text-lg">
           <li>
             <strong>Orden de llegada:</strong> Las páginas se gestionan en el
             mismo orden en que fueron cargadas.
@@ -29,7 +29,7 @@ export default function IntroFifo() {
         <h2 className="text-center text-2xl font-semibold">
           Ventajas y Desventajas
         </h2>
-        <ul className="list-inside list-disc text-lg">
+        <ul className="list-inside list-disc 2xl:text-lg">
           <li>
             <strong>Ventaja:</strong> Fácil de implementar y comprender, ideal
             para fines educativos.

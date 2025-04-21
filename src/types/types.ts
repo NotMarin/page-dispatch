@@ -1,4 +1,10 @@
-export type Algorithm = "fifo" | "fifoplus" | "lru" | "optimal" | "fifo+";
+export type Algorithm =
+  | "fifo"
+  | "lru"
+  | "optimal"
+  | "fifo+"
+  | "clock"
+  | "second-chance";
 
 export interface FrameHistory {
   frames: (number | null)[];

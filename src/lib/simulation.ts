@@ -3,6 +3,7 @@ import { fifoAlgorithm } from "./algorithms/fifo";
 import { lruAlgorithm } from "./algorithms/lru";
 import { optimalAlgorithm } from "./algorithms/optimal";
 import { fifoPlusAlgorithm } from "./algorithms/fifo+";
+import { clockAlgorithm } from "./algorithms/clock";
 
 export function runSimulation(
   algorithm: Algorithm,
@@ -17,6 +18,10 @@ export function runSimulation(
     case "optimal":
       return optimalAlgorithm(referenceString, frameCount);
     case "fifo+":
+      return fifoPlusAlgorithm(referenceString, frameCount);
+    case "clock":
+      return clockAlgorithm(referenceString, frameCount);
+    case "second-chance":
       return fifoPlusAlgorithm(referenceString, frameCount);
     default:
       return {

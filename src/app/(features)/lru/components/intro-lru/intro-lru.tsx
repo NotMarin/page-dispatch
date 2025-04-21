@@ -4,14 +4,14 @@ export default function IntroLru() {
       <div className="flex max-w-4xl flex-col gap-4">
         <h1 className="text-5xl font-bold">Least Recently Used (LRU)</h1>
 
-        <p className="text-lg">
+        <p className="2xl:text-lg">
           LRU es un algoritmo de reemplazo de páginas que se basa en la idea de
           que las páginas que no se han usado recientemente son menos propensas
           a ser utilizadas en el futuro.
         </p>
 
         <h2 className="text-center text-2xl font-semibold">Conceptos clave</h2>
-        <ul className="list-inside list-disc text-lg">
+        <ul className="list-inside list-disc 2xl:text-lg">
           <li>
             <strong>Uso reciente:</strong> Se reemplaza la página que ha pasado
             más tiempo sin ser utilizada.
@@ -29,7 +29,7 @@ export default function IntroLru() {
         <h2 className="text-center text-2xl font-semibold">
           Ventajas y Desventajas
         </h2>
-        <ul className="list-inside list-disc text-lg">
+        <ul className="list-inside list-disc 2xl:text-lg">
           <li>
             <strong>Ventaja:</strong> Generalmente ofrece mejor rendimiento que
             FIFO en escenarios reales.

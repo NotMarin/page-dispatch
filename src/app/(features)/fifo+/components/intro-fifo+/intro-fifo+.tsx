@@ -6,14 +6,14 @@ export default function IntroFifoPlus() {
       <div className="flex max-w-4xl flex-col gap-4">
         <h1 className="text-5xl font-bold">FIFO+</h1>
 
-        <p className="text-lg">
+        <p className="2xl:text-lg">
           Es una mejora del algoritmo FIFO que le da una &quot;segunda
           oportunidad&quot; a las páginas que han sido utilizadas recientemente
           antes de ser reemplazadas.
         </p>
 
         <h2 className="text-center text-2xl font-semibold">Conceptos clave</h2>
-        <ul className="list-inside list-disc text-lg">
+        <ul className="list-inside list-disc 2xl:text-lg">
           <li>
             <strong>Bit de uso:</strong> Cada página tiene un bit que indica si
             ha sido accedida recientemente.
@@ -32,7 +32,7 @@ export default function IntroFifoPlus() {
         <h2 className="text-center text-2xl font-semibold">
           Ventajas y Desventajas
         </h2>
-        <ul className="list-inside list-disc text-lg">
+        <ul className="list-inside list-disc 2xl:text-lg">
           <li>
             <strong>Ventaja:</strong> Mejora el rendimiento de FIFO al evitar
             reemplazar páginas que aún son útiles.

@@ -1,3 +1,5 @@
+import LayoutClock from "./layout";
+
 export default function Clock() {
-  return <div>Clock</div>;
+  return <LayoutClock />;
 }

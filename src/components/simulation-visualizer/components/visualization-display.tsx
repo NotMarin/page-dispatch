@@ -25,7 +25,6 @@ export default function VisualizationDisplay({
   currentPage,
   isFault,
   replacedPage,
-  currentFrames,
   history,
   frameCount,
   pageFaults,
@@ -83,21 +82,7 @@ export default function VisualizationDisplay({
           </div>
         </div>
 
-        <div className="grid grid-cols-[9rem_1fr] gap-5">
-          <div>
-            <h4 className="mb-2 text-sm font-medium">Marcos de Memoria</h4>
-            <div className="grid grid-cols-1 gap-2">
-              {currentFrames.map((frame, index) => (
-                <div
-                  key={index}
-                  className={`flex h-10 items-center justify-center rounded-md border-2 ${frame === null ? "border-muted text-muted-foreground border-dashed" : "border-primary border-solid"} ${frame === currentPage && isFault ? "bg-primary/10" : ""} `}
-                >
-                  {frame !== null ? frame : "Vacío"}
-                </div>
-              ))}
-            </div>
-          </div>
-
+        <div>
           <div>
             <h4 className="mb-2 text-sm font-medium">Ejecución Paso a Paso</h4>
             <div className="overflow-x-auto">
